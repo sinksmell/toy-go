@@ -1,2 +1,8 @@
 # toy-go
-some tools for gopher
+a useful tool for gopher
+
+## setup
+
+## usage
+
+## thanks
