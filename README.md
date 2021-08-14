@@ -10,7 +10,7 @@ Some useful tools for gopher
 1. Run in Docker
 
 ```shell
-docker run -p 9090:9090 destory/toy-go:v0.0.1
+docker run -p 9090:9090 destory/toy-go:v0.0.2
 ```
 
 2. Visit http://localhost:9090

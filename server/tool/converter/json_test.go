@@ -10,7 +10,8 @@ func TestParseJson(t *testing.T) {
     "name": {
       "first": "Leonid",
       "last": "Bugaev",
-      "fullName": "Leonid Bugaev"
+      "fullName": "Leonid Bugaev",
+	  "upvote_num":123,
     },
     "github": {
       "handle": "buger",
@@ -65,5 +66,36 @@ func BenchmarkConvert(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		c := NewJsonConverter().GenStruct(string(data))
 		_ = c
+	}
+}
+
+func Test_snakesToCamel(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name       string
+		args       args
+		wantResult string
+	}{
+		{
+			args: args{
+				str: "hell_world",
+			},
+			wantResult: "hellWorld",
+		},
+		{
+			args: args{
+				str: "Hell_World",
+			},
+			wantResult: "hellWorld",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if gotResult := snakesToCamel(tt.args.str); gotResult != tt.wantResult {
+				t.Errorf("snakesToCamel() = %v, want %v", gotResult, tt.wantResult)
+			}
+		})
 	}
 }

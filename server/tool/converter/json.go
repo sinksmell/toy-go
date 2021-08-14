@@ -233,6 +233,10 @@ func ToCamelCase(str string) string {
 		return str
 	}
 
+	if strings.Contains(str, "_") {
+		return snakesToCamel(str)
+	}
+
 	var buff strings.Builder
 	var temp string
 	for _, r := range str {
@@ -255,4 +259,16 @@ func ToCamelCase(str string) string {
 	}
 
 	return string(b)
+}
+
+func snakesToCamel(str string) (result string) {
+	part := strings.Split(str, "_")
+	sb := strings.Builder{}
+	for _, p := range part {
+		p = strings.ToLower(p)
+		p = strings.ToUpper(string(p[0:1])) + p[1:]
+		sb.WriteString(p)
+	}
+
+	return sb.String()
 }
